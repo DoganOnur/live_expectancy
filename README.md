@@ -1,16 +1,22 @@
 # live_expectancy
 
-A new Flutter project.
+Yaşamımızda bazen acaba ne kadar ömrü kaldı? Bunun gündelik hayatta bazen kendi kendimize sorarız.
+Gerçekte ne kadar kaldığını bilmek zor hatta imkansız fakat sağlık yaşam ile matematiksel olarak belki 
+bir hesaplama ile ne kadar kalacağını hesaplayabilir böylelikle sağlık yaşama yaklaşımız artabilir.
+Bu uygulamada sağlık yaşama biraz daha eğilim olması adına bazı temel bilgi ile hesaplama uygulaması yapılmıştır.
+Bu bilgiler:
+Boy,
+Kilo,
+Hafta kaç gün spor yapıyorsunuz?
+Günde kaç sigara içiyorsunuz?
+Cinsiyet
 
-## Getting Started
+Bilgileri gir sonra hesapla gelsin!
 
-This project is a starting point for a Flutter application.
+<br>
+<p float="left">
+<img hspace="5" src="assets/readme-files/3.png" width="150" />
+<img hspace="5" src="assets/readme-files/2.png" width="150" />
+<img hspace="5" src="assets/readme-files/1.png" width="150" />
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+</p>
