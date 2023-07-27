@@ -10,10 +10,9 @@ class Live extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-
         scaffoldBackgroundColor: Colors.blue[300],
       ),
-      home: Input(),
+      home: Input_page(),
     );
   }
 }

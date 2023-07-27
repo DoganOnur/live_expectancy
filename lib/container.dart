@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 class MyContainer extends StatelessWidget {
   final Color renk;
   final Widget? child;

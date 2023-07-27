@@ -2,22 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:live_expectancy/constant.dart';
+import 'package:live_expectancy/class.dart';
+import 'package:live_expectancy/sonuc.dart';
 import 'container.dart';
 import 'icon_cinsiyet.dart';
 
-class Input extends StatefulWidget {
-  const Input({Key? key}) : super(key: key);
+class Input_page extends StatefulWidget {
+  //static String routeName = '/input_page';
   @override
-  State<Input> createState() => _InputState();
+  State<Input_page> createState() => _Input_pageState();
 }
 
-class _InputState extends State<Input> {
+class _Input_pageState extends State<Input_page> {
   String tiklacinsiyet = '';
   double slider_sayac = 0;
   double slider_spor = 0;
   int boy = 170;
-  int kilo=50;
+  int kilo = 50;
 
+  //Kullanici kullanici = Kullanici(ad:'ONUR',yas: 25);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +28,7 @@ class _InputState extends State<Input> {
         centerTitle: true,
         title: Text(
           'Yasam Beklentisi',
-          style: GoogleFonts.satisfy(textStyle: TextStyle(fontSize: 35)),
+          style: font,
         ),
       ),
       body: SafeArea(
@@ -56,26 +59,33 @@ class _InputState extends State<Input> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(
-                      'Haftada Kaç Gün Spor Yapıyorsunuz?',
-                      style:
-                          GoogleFonts.arima(textStyle: TextStyle(fontSize: 20)),
+                    Expanded(
+                      child: Text(
+                        'Haftada Kaç Gün Spor Yapıyorsunuz?',
+                        style: GoogleFonts.arima(
+                            textStyle: TextStyle(fontSize: 20)),
+                      ),
                     ),
-                    Text(
-                      ' ${slider_spor.toStringAsFixed(0)}',
-                      style: kSayiStil,
+                    Expanded(
+                      flex: 1,
+                      child: Text(
+                        ' ${slider_spor.toStringAsFixed(0)}',
+                        style: kSayiStil,
+                      ),
                     ),
-                    Slider(
-                      min: 0,
-                      max: 7,
-                      divisions: 7,
-                      value: slider_spor,
-                      //divisions: 5,// 5 böldü
-                      onChanged: (newValue) {
-                        setState(() {
-                          slider_spor = newValue;
-                        });
-                      },
+                    Expanded(
+                      child: Slider(
+                        min: 0,
+                        max: 7,
+                        divisions: 7,
+                        value: slider_spor,
+                        //divisions: 5,// 5 böldü
+                        onChanged: (newValue) {
+                          setState(() {
+                            slider_spor = newValue;
+                          });
+                        },
+                      ),
                     ),
                   ],
                 ),
@@ -88,24 +98,31 @@ class _InputState extends State<Input> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(
-                      'Günde Kaç Sigara İçiyorsunuz?',
-                      style:
-                          GoogleFonts.arima(textStyle: TextStyle(fontSize: 25)),
+                    Expanded(
+                      child: Text(
+                        'Günde Kaç Sigara İçiyorsunuz?',
+                        style: GoogleFonts.arima(
+                            textStyle: TextStyle(fontSize: 25)),
+                      ),
                     ),
-                    Text(
-                      ' ${slider_sayac.toStringAsFixed(0)}',
-                      style: kSayiStil,
+                    Expanded(
+                      flex: 1,
+                      child: Text(
+                        ' ${slider_sayac.toStringAsFixed(0)}',
+                        style: kSayiStil,
+                      ),
                     ),
-                    Slider(
-                      max: 20,
-                      value: slider_sayac,
-                      //divisions: 5,// 5 böldü
-                      onChanged: (newValue) {
-                        setState(() {
-                          slider_sayac = newValue;
-                        });
-                      },
+                    Expanded(
+                      child: Slider(
+                        max: 20,
+                        value: slider_sayac,
+                        //divisions: 5,// 5 bölenmesi
+                        onChanged: (newValue) {
+                          setState(() {
+                            slider_sayac = newValue;
+                          });
+                        },
+                      ),
                     ),
                   ],
                 ),
@@ -122,8 +139,8 @@ class _InputState extends State<Input> {
                         });
                       },
                       renk: tiklacinsiyet == 'KADIN'
-                          ? Colors.black54
-                          : Colors.white,
+                          ? Renkler.Blue
+                          : Renkler.White,
                       child: IconCinsiyet(
                           cinsiyet: 'KADIN', icon: FontAwesomeIcons.venus),
                     ),
@@ -136,8 +153,8 @@ class _InputState extends State<Input> {
                         });
                       },
                       renk: tiklacinsiyet == 'ERKEK'
-                          ? Colors.black54
-                          : Colors.white,
+                          ? Renkler.Blue
+                          : Renkler.White,
                       child: IconCinsiyet(
                           cinsiyet: 'ERKEK', icon: FontAwesomeIcons.mars),
                     ),
@@ -149,15 +166,31 @@ class _InputState extends State<Input> {
         ),
       ),
       bottomNavigationBar: BottomAppBar(
-        color: Colors.black54,
+        color: Renkler.Blue,
         height: 50,
         child: Center(
           child: TextButton(
-            onPressed: () {},
+            onPressed: () {
+              //Navigator.push(context, MaterialPageRoute(builder: (context) => YeniSayfa(metin: 'Korkma Korkma Az Ömrün Kalmadı ''Daha Çok Yaşarsın Sen :)',)));
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Sonuc(
+                    UserData(
+                        kilo: kilo,
+                        slider_spor: slider_spor,
+                        slider_sayac: slider_sayac,
+                        boy: boy,
+                        tiklacinsiyet: tiklacinsiyet),
+                  ),
+                ),
+              );
+              //Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => YeniSayfa()), (route) => false);// bundan sonra gideceği sayfa bir
+              // önceki bütün sayfalar gitti o sayfa geri döndürmez.
+            },
             child: Text(
-              'Korkma hesapla gitsin!',
-              style: GoogleFonts.tapestry(
-                  textStyle: TextStyle(color: Colors.white, fontSize: 25)),
+              'Korkma Hesapla Gitsin!',
+              style: tape,
             ),
           ),
         ),
@@ -167,54 +200,58 @@ class _InputState extends State<Input> {
 
   Row buildRowOutlineButton(String metin) {
     return Row(
-                      //mainAxisSize: MainAxisSize.min,
-                      //crossAxisAlignment: CrossAxisAlignment.center,
-                      //mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: RotatedBox(
-                              quarterTurns: -1,
-                              child: Text(metin, style: kMetinStil)),
-                        ),
-                        RotatedBox(
-                            quarterTurns: -1,
-                            child: Text(metin=='BOY'?boy.toString():kilo.toString(), style: kSayiStil)),
-                        Expanded(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: <Widget>[
-                              OutlinedButton(
-                                onPressed: () {
-                                  setState(() {
-                                    metin=='BOY'?boy++:kilo++;
-                                  });
-                                },
-                                child: Icon(FontAwesomeIcons.plus),
-                                style: OutlinedButton.styleFrom(
-                                  minimumSize: Size(30.0, 40.0),
-                                  //padding: EdgeInsets.zero, // Buton içeriği ile kenarlık arasındaki boşluğu kaldırır
-                                  side: BorderSide(color: Colors.lightBlue),
-                                ),
-                              ),
-                              OutlinedButton(
-                                onPressed: () {
-                                  setState(() {
-                                    metin=='BOY'?boy--:kilo--;
-                                  });
-                                },
-                                child: Icon(FontAwesomeIcons.minus),
-                                style: OutlinedButton.styleFrom(
-                                  minimumSize: Size(30.0,40.0),
-                                  //padding: EdgeInsets.zero, // Buton içeriği ile kenarlık arasındaki boşluğu kaldırır
-                               side: BorderSide(color: Colors.lightBlue),
-                                ),
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
-                    );
+      //mainAxisSize: MainAxisSize.min,
+      //crossAxisAlignment: CrossAxisAlignment.center,
+      //mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: RotatedBox(
+              quarterTurns: -1, child: Text(metin, style: kMetinStil)),
+        ),
+        RotatedBox(
+          quarterTurns: -1,
+          child: Text(
+            metin == 'BOY' ? boy.toString() : kilo.toString(),
+            style: kSayiStil,
+            //labelText: 'Metin',
+          ),
+        ),
+        Expanded(
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              OutlinedButton(
+                onPressed: () {
+                  setState(() {
+                    metin == 'BOY' ? boy++ : kilo++;
+                  });
+                },
+                child: Icon(icon2),
+                style: OutlinedButton.styleFrom(
+                  minimumSize: Size(30.0, 40.0),
+                  //padding: EdgeInsets.zero, // Buton içeriği ile kenarlık arasındaki boşluğu kaldırır
+                  side: BorderSide(color: Renkler.Blue),
+                ),
+              ),
+              OutlinedButton(
+                onPressed: () {
+                  setState(() {
+                    metin == 'BOY' ? boy-- : kilo--;
+                  });
+                },
+                child: Icon(icon),
+                style: OutlinedButton.styleFrom(
+                  minimumSize: Size(30.0, 40.0),
+                  //padding: EdgeInsets.zero, // Buton içeriği ile kenarlık arasındaki boşluğu kaldırır
+                  side: BorderSide(color: Renkler.Blue),
+                ),
+              ),
+            ],
+          ),
+        )
+      ],
+    );
   }
 }
