@@ -18,5 +18,8 @@ Bilgileri gir sonra hesapla gelsin!
 <img hspace="5" src="assets/readme-files/3.png" width="150" />
 <img hspace="5" src="assets/readme-files/2.png" width="150" />
 <img hspace="5" src="assets/readme-files/1.png" width="150" />
+<img hspace="5" src="assets/readme-files/4.png" width="150" />
+<img hspace="5" src="assets/readme-files/5.png" width="150" />
+<img hspace="5" src="assets/readme-files/6.png" width="150" />
 
 </p>
